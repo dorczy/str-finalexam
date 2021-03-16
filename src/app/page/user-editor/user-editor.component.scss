@@ -1,0 +1,12 @@
+.error-message {
+  font-style: italic;
+  color: rgb(207, 21, 21);
+  position: relative;
+  animation: error .4s ease 3;
+}
+
+@keyframes error {
+  0% {left: 0px}
+  50% {left: 10px}
+  100% {left: 0px}
+}
