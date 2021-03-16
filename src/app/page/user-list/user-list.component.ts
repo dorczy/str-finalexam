@@ -29,19 +29,23 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-  ) { }
+  ) {
+    this.userService.getAll();
+  }
 
   ngOnInit(): void {
+    this.userService.getAll();
   }
 
   onClickDelete(user: User): void {
-    this.userService.remove(user).subscribe(
-      () => {
-        console.log("TÖRÖLVE");
-        console.log("this.router.url", this.router.url);
-        this.router.navigate([this.router.url]);
-      }
-    );
+    if (confirm("Are you sure you want to delete this user?")) {
+      this.userService.remove(user).subscribe(
+        () => {
+          this.userService.getAll();
+          this.router.navigate([this.router.url]);
+        }
+      );
+    }
   }
 
   onChangeSort(data: string): void {
